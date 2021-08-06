@@ -38,7 +38,69 @@ const MORSE_TABLE = {
 };
 
 function decode(expr) {
-  let arr;
+  const MORSE_TABLE = {
+    ".-": "a",
+    "-...": "b",
+    "-.-.": "c",
+    "-..": "d",
+    ".": "e",
+    "..-.": "f",
+    "--.": "g",
+    "....": "h",
+    "..": "i",
+    ".---": "j",
+    "-.-": "k",
+    ".-..": "l",
+    "--": "m",
+    "-.": "n",
+    "---": "o",
+    ".--.": "p",
+    "--.-": "q",
+    ".-.": "r",
+    "...": "s",
+    "-": "t",
+    "..-": "u",
+    "...-": "v",
+    ".--": "w",
+    "-..-": "x",
+    "-.--": "y",
+    "--..": "z",
+    ".----": "1",
+    "..---": "2",
+    "...--": "3",
+    "....-": "4",
+    ".....": "5",
+    "-....": "6",
+    "--...": "7",
+    "---..": "8",
+    "----.": "9",
+    "-----": "0",
+  };
+  let expr =
+    "00101010100000000010001011101000101110100000111111**********00001011110000111111000010111000101110100000111010";
+  let arr = [];
+  let newArr = [];
+  while (expr !== "") {
+    arr.push(expr.slice(0, 10));
+    expr = expr.slice(10);
+  }
+  // const regEx = /\d{1,2}(?=(\d{2})+(?!\d))/g;
+  let regEx2 = /10/gi;
+  let regEx3 = /11/gi;
+  let regEx4 = /00/gi;
+  let regEx5 = /\*{10}/gi;
+
+  for (let i = 0; i < arr.length; i++) {
+    // arr[i] = arr[i].replace(regEx, "$&,");
+    newArr[i] = arr[i].replace(regEx2, ".");
+    newArr[i] = newArr[i].replace(regEx3, "-");
+    newArr[i] = newArr[i].replace(regEx4, "");
+    newArr[i] = newArr[i].replace(regEx5, "_");
+    arr[i] = MORSE_TABLE[newArr[i]];
+  }
+
+  console.log(arr);
+
   // write your solution here
 }
 
